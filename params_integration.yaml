@@ -1,0 +1,63 @@
+project_name: integrated
+
+# comma-separated list of filtered Seurat objects to be integrated
+
+seurat_objects: seurat_1.rds,seurat_2"  
+
+group: "orig.ident"
+
+sample_ids: ""
+
+species: mouse 			# name of species either "mouse" or "human"
+
+results_dir: "./results/"
+
+normalization:
+ do_normalization: True
+ regress_CC: False
+ percent.mito: "percent.mt"
+ S_score: "S_score"
+ G2M_score: "G2M_score"
+
+integration:
+ nfeatures : 3000 		# if "all", union of all genes from all objects will be included
+ normalization.method : "SCT"
+ reduction: "rpca"  		# options: "cca", "rpca", "jpca", "rlsi"
+ dims : 20
+ k.anchor : 30
+
+dim_reduction:
+ do_PCA: True
+ assay: integrated
+ n_dims: 20
+
+clustering:
+ do_clustering: True
+ knn : 20
+ resolution: auto
+
+
+UMAP:
+ do_UMAP: True
+
+markers:	
+ find_markers : True
+ min.pct : 0.25
+ logfc.threshold : 0.25
+ p_val_adj: 0.05
+ top_markers : 5
+ GO_enrich: False
+
+output_plots: 
+ #generate_plots: False
+ reduction: umap # choose name of Seurat's DimReduc object
+ assay: RNA
+ genesOfinterest_file : "genesOfinterest.txt"
+ pointSize : 0.3
+
+
+
+
+ 
+
+
